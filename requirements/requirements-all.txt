@@ -1,0 +1,3 @@
+peppy >= 0.32.0
+logmuse
+ubiquerg
