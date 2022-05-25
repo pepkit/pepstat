@@ -5,6 +5,7 @@ from ubiquerg import VersionInHelpParser
 from ._version import __version__
 from .const import *
 
+
 def build_argparser(desc):
     """
     Builds argument parser.
@@ -18,7 +19,10 @@ def build_argparser(desc):
     )
 
     parser.add_argument(
-        "-V", "--version", action="version", version="%(prog)s {v}".format(v=__version__)
+        "-V",
+        "--version",
+        action="version",
+        version="%(prog)s {v}".format(v=__version__),
     )
 
     subparsers = parser.add_subparsers(dest="command")
@@ -36,11 +40,7 @@ def build_argparser(desc):
     sps = {}
     sps[INDEX_CMD] = add_subparser(INDEX_CMD, "Index a repository of peps.")
     sps[INDEX_CMD].add_argument(
-        "-p",
-        "--path",
-        dest="path",
-        required=True,
-        help="Path/URL to PEP repository."
+        "-p", "--path", dest="path", required=True, help="Path/URL to PEP repository."
     )
 
     return parser

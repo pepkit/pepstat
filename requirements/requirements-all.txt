@@ -3,3 +3,4 @@ logmuse
 ubiquerg
 pyyaml
 tqdm
+attmap
