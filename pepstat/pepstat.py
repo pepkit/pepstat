@@ -101,7 +101,7 @@ class PEPIndexer(PathExAttMap):
                 )
             return "project_config.yaml"
 
-    def index(self, path: str, output: str, reset=False) -> None:
+    def index(self, path: str, output: str = "index.yaml", reset=False) -> None:
         """
         Load the storage tree into memory by traversing
         the folder structure and storing locations to
@@ -152,7 +152,7 @@ class PEPIndexer(PathExAttMap):
 
         # dump to yaml
         with open(output, "w") as fh:
-            yaml.dump(self[INDEX_STORE_KEY], fh)
+            yaml.dump(self[INDEX_STORE_KEY].__repr__, fh)
 
         return self[INDEX_STORE_KEY]
 
@@ -188,7 +188,7 @@ class PEPIndexer(PathExAttMap):
 
     def get_index(self) -> dict:
         """Return dict representation of the index"""
-        return self[INDEX_STORE_KEY]
+        return dict(self[INDEX_STORE_KEY])
 
     def load_index(self, path: str):
         """
