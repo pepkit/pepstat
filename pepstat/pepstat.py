@@ -1,19 +1,23 @@
 from logging import getLogger
+from typing import List
 import peppy
 import yaml
 import os
 import pathlib
+from itertools import chain
+from attmap import PathExAttMap
 from tqdm import tqdm
-from .const import PKG_NAME
-from .exceptions import PEPstatError
+from .const import INDEX_STORE_KEY, INFO_KEY, PKG_NAME, PROJECTS_KEY
+from .exceptions import NamespaceNotFoundError, PEPstatError
 
 _LOGGER = getLogger(PKG_NAME)
 
 
-class PEPIndexer():
+class PEPIndexer(PathExAttMap):
     """Class to parse a pephub repository and preoduce an index file."""
+
     def __init__(self):
-        self.index_store = None
+        self[INDEX_STORE_KEY] = None
 
     def _is_valid_namespace(self, path: str) -> bool:
         """
@@ -21,7 +25,7 @@ class PEPIndexer():
         Will check a given path for the following criteria:
             1. Is a folder
             2. Is not a "dot" file (e.g. .git)
-        
+
         :param str path - path to potential namespace
         """
         name = pathlib.Path(path).name
@@ -35,13 +39,28 @@ class PEPIndexer():
         criteria:
             1. Is a folder
             2. Is not a "dot" file (e.g. .git)
-        
+
         :param str path - path potential project
         """
         name = pathlib.Path(path).name
         criteria = [os.path.isdir(path), not name.startswith(".")]
         return all(criteria)
 
+    def _extract_namespace_info(self, path_to_namespace: str) -> dict:
+        """
+        Take a given path to a namespace and attempt to extract any
+        info found. It attempts to find a .pep.yaml file and returns
+        the contents of the file as a dict.
+
+        :param str path_to_namespace - path to the namespace to look
+        :return dict - dictionary of info
+        """
+        try:
+            with open(f"{path_to_namespace}/.pep.yaml", "r") as stream:
+                _pephub_yaml = yaml.safe_load(stream)
+            return _pephub_yaml
+        except FileNotFoundError:
+            return {}
 
     def _extract_project_file_name(self, path_to_proj: str) -> str:
         """
@@ -56,7 +75,7 @@ class PEPIndexer():
                 else step 3
             3. If no .pep.yaml file with config_file attribute exists AND
             no porject_config.yaml file exists, then return None.
-        
+
         :param str path_to_proj - path to the project
         """
         try:
@@ -82,7 +101,6 @@ class PEPIndexer():
                 )
             return "project_config.yaml"
 
-
     def index(self, path: str, output: str, reset=False) -> None:
         """
         Load the storage tree into memory by traversing
@@ -99,55 +117,85 @@ class PEPIndexer():
             filepath.parent.mkdir(parents=True, exist_ok=True)
 
         # init datastore dict if it doesn't already exist
-        if any([self.index_store is None, reset]):
-            self.index_store = {}
+        if any([self[INDEX_STORE_KEY] is None, reset]):
+            self[INDEX_STORE_KEY] = {}
 
         # traverse directory
         for name in tqdm(os.listdir(path), desc="Indexing repository", leave=True):
             # build a path to the namespace
             path_to_namespace = f"{path}/{name}"
+            name = name.lower()
+
             if self._is_valid_namespace(path_to_namespace):
                 # init sub-dict
-                self.index_store[name.lower()] = {}
+                self[INDEX_STORE_KEY][name] = {PROJECTS_KEY: {}}
+                self[INDEX_STORE_KEY][name][INFO_KEY] = self._extract_namespace_info(
+                    path_to_namespace
+                )
 
                 # traverse projects
-                for proj in tqdm(os.listdir(path_to_namespace), desc=f"Indexing {name}", leave=True):
+                for proj in tqdm(
+                    os.listdir(path_to_namespace), desc=f"Indexing {name}", leave=True
+                ):
                     # build path to project
                     path_to_proj = f"{path_to_namespace}/{proj}"
+                    proj = proj.lower()
                     if self._is_valid_project(path_to_proj):
-                        self.index_store[name.lower()][
-                            proj.lower()
-                        ] = {
-                            'name': proj,
-                            'cfg': f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}"
+                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj] = {
+                            "name": proj,
+                            "cfg": f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}",
                         }
 
                         # store number of samples in project by loading project into memory
-                        p = peppy.Project(self.index_store[name.lower()][proj.lower()]['cfg'])
-                        self.index_store[name.lower()][proj.lower()]['n_samples'] = len(p.samples)
-
-                        # store href
-                        self.index_store[name.lower()][proj.lower()]['href'] = f"/pep/{name.lower()}/{proj.lower()}"
+                        p = peppy.Project(self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj]["cfg"])
+                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj]["n_samples"] = len(p.samples)
 
         # dump to yaml
-        with open(output, 'w') as fh:
-            yaml.dump(self.index_store, fh)
-        
-        return self.index_store
+        with open(output, "w") as fh:
+            yaml.dump(self[INDEX_STORE_KEY], fh)
+
+        return self[INDEX_STORE_KEY]
+
+    def get_projects(self, namespace: str = None) -> List[dict]:
+        """
+        Return a list of project representations (dicts). Can either
+        return for specific namespace or all projects in the index.
+
+        :param str namespace - namespace to get projects for (Optional.)
+        """
+        if namespace is not None:
+            if namespace not in self[INDEX_STORE_KEY]:
+                raise NamespaceNotFoundError(
+                    f"Namespace '{namespace}' not found in index."
+                )
+            return self[INDEX_STORE_KEY][namespace][PROJECTS_KEY]
+        else:
+            return list(
+                chain(
+                    *[
+                        self[INDEX_STORE_KEY][n][PROJECTS_KEY]
+                        for n in self[INDEX_STORE_KEY]
+                        if n is not INFO_KEY
+                    ]
+                )
+            )
     
+    def get_namespaces(self) -> List[str]:
+        """
+        Return a list of namespace names in the index 
+        """
+        return [n for n in self[INDEX_STORE_KEY] if n is not INFO_KEY]
+
     def get_index(self) -> dict:
         """Return dict representation of the index"""
-        return self.index_store
-    
+        return self[INDEX_STORE_KEY]
+
     def load_index(self, path: str):
         """
         Load a previously created index file.
 
         :param str path - path to the file.
         """
-        with open(path, 'r') as fh:
-            self.index_store = yaml.safe_load(fh)
+        with open(path, "r") as fh:
+            self[INDEX_STORE_KEY] = yaml.safe_load(fh)
         return
-
-
-
