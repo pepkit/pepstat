@@ -36,14 +36,6 @@ class TestIndexing:
     def test_index_success(self, pep_indxr, namespace):
         assert len(pep_indxr.get_projects(namespace['name'])) == namespace['nprojects']
     
-<<<<<<< HEAD
-    def test_read_index(self, data_path):
-        indxr = PEPIndexer()
-        indxr.load_index(f"{data_path}/index.yaml")
-
-        assert isinstance(indxr.get_index(), dict)
-    
-=======
     def test_get_namespaces(self, pep_indxr):
         valid_nspaces = [
             "demo", "changlab", "geo"
@@ -52,4 +44,3 @@ class TestIndexing:
             nspace in pep_indxr.get_namespaces() for nspace in valid_nspaces
         )
         assert len(valid_nspaces) == len(pep_indxr.get_namespaces())
->>>>>>> refs/remotes/origin/master
