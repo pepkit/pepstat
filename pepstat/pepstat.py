@@ -1,6 +1,8 @@
 from logging import getLogger
 import yaml
 import os
+import pathlib
+from tqdm import tqdm
 from .const import PKG_NAME
 from .exceptions import PipstatError
 
@@ -10,7 +12,7 @@ _LOGGER = getLogger(PKG_NAME)
 class PEPIndexer():
     """Class to parse a pephub repository and preoduce an index file."""
     def __init__(self):
-        pass
+        self.index_store = None
 
     def _is_valid_namespace(self, path: str, name: str) -> bool:
         """
@@ -80,31 +82,61 @@ class PEPIndexer():
             return "project_config.yaml"
 
 
-    def index(self, path: str, data_store: dict) -> None:
+    def index(self, path: str, output: str, reset=False) -> None:
         """
         Load the storage tree into memory by traversing
         the folder structure and storing locations to
         configuration files into the dictonary.
 
         :param str path - path to repository
+        :param str output - path to the output file of the index
+        :param boolean reset - flag to reset the index if one has already been created
         """
+        # check path exists ... make if not
+        if not os.path.exists(output):
+            filepath = pathlib.Path(output)
+            filepath.mkdir(parents=True, exist_ok=True)
+
+        # init datastore dict if it doesn't already exist
+        if any(self.index_store is None, reset):
+            self.index_store = {}
 
         # traverse directory
-        for name in os.listdir(path):
+        for name in tqdm(os.listdir(path), desc="Indexing repository", leave=True):
             # build a path to the namespace
             path_to_namespace = f"{path}/{name}"
             if self._is_valid_namespace(path_to_namespace, name):
                 # init sub-dict
-                data_store[name.lower()] = {}
+                self.index_store[name.lower()] = {}
 
                 # traverse projects
-                for proj in os.listdir(path_to_namespace):
+                for proj in tqdm(os.listdir(path_to_namespace), desc=f"Indexing {name}", leave=True):
                     # build path to project
                     path_to_proj = f"{path_to_namespace}/{proj}"
                     if self._is_valid_project(path_to_proj, proj):
-                        data_store[name.lower()][
+                        self.index_store[name.lower()][
                             proj.lower()
                         ] = f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}"
 
-        return data_store
+        # dump to yaml
+        with open(output, 'w') as fh:
+            yaml.dump(self.index_store, fh)
+        
+        return self.index_store
+    
+    def get_index(self) -> dict:
+        """Return dict representation of the index"""
+        return self.index_store
+    
+    def load_index(self, path: str):
+        """
+        Load a previously created index file.
+
+        :param str path - path to the file.
+        """
+        with open(path, 'r') as fh:
+            self.index_store = yaml.safe_load(fh)
+        return
+
+
 
