@@ -1,0 +1,883 @@
+changlab:
+  pep_1:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/ChangLab/PEP_1/TCGA_AllSamples_FinalBamList_config.yaml
+    href: /pep/changlab/pep_1
+    n_samples: 0
+    name: PEP_1
+  pep_2:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/ChangLab/PEP_2/TCGA_AllSamples_FinalBamList_config.yaml
+    href: /pep/changlab/pep_2
+    n_samples: 796
+    name: PEP_2
+demo:
+  amendments1:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/amendments1/project_config.yaml
+    href: /pep/demo/amendments1
+    n_samples: 4
+    name: amendments1
+  amendments2:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/amendments2/project_config.yaml
+    href: /pep/demo/amendments2
+    n_samples: 6
+    name: amendments2
+  append:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/append/project_config.yaml
+    href: /pep/demo/append
+    n_samples: 4
+    name: append
+  automerge:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/automerge/project_config.yaml
+    href: /pep/demo/automerge
+    n_samples: 3
+    name: automerge
+  basic:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/basic/project_config.yaml
+    href: /pep/demo/basic
+    n_samples: 2
+    name: basic
+  biocproject:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/BiocProject/project_config.yaml
+    href: /pep/demo/biocproject
+    n_samples: 2
+    name: BiocProject
+  biocproject_exceptions:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/BiocProject_exceptions/project_config.yaml
+    href: /pep/demo/biocproject_exceptions
+    n_samples: 2
+    name: BiocProject_exceptions
+  biocproject_remote:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/BiocProject_remote/project_config.yaml
+    href: /pep/demo/biocproject_remote
+    n_samples: 1
+    name: BiocProject_remote
+  custom_index:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/custom_index/project_config.yaml
+    href: /pep/demo/custom_index
+    n_samples: 2
+    name: custom_index
+  derive:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/derive/project_config.yaml
+    href: /pep/demo/derive
+    n_samples: 4
+    name: derive
+  derive_imply:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/derive_imply/project_config.yaml
+    href: /pep/demo/derive_imply
+    n_samples: 4
+    name: derive_imply
+  duplicate:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/duplicate/project_config.yaml
+    href: /pep/demo/duplicate
+    n_samples: 4
+    name: duplicate
+  imply:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/imply/project_config.yaml
+    href: /pep/demo/imply
+    n_samples: 6
+    name: imply
+  imports:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/imports/project_config.yaml
+    href: /pep/demo/imports
+    n_samples: 2
+    name: imports
+  node_alias:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/node_alias/project_config.yaml
+    href: /pep/demo/node_alias
+    n_samples: 2
+    name: node_alias
+  noname:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/noname/project_config.yaml
+    href: /pep/demo/noname
+    n_samples: 4
+    name: noname
+  piface:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/piface/project_config.yaml
+    href: /pep/demo/piface
+    n_samples: 3
+    name: piface
+  remove:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/remove/project_config.yaml
+    href: /pep/demo/remove
+    n_samples: 4
+    name: remove
+  subtable1:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/subtable1/project_config.yaml
+    href: /pep/demo/subtable1
+    n_samples: 3
+    name: subtable1
+  subtable2:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/subtable2/project_config.yaml
+    href: /pep/demo/subtable2
+    n_samples: 4
+    name: subtable2
+  subtable3:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/subtable3/project_config.yaml
+    href: /pep/demo/subtable3
+    n_samples: 4
+    name: subtable3
+  subtable4:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/subtable4/project_config.yaml
+    href: /pep/demo/subtable4
+    n_samples: 4
+    name: subtable4
+  subtable5:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/subtable5/project_config.yaml
+    href: /pep/demo/subtable5
+    n_samples: 4
+    name: subtable5
+  subtables:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/demo/subtables/project_config.yaml
+    href: /pep/demo/subtables
+    n_samples: 3
+    name: subtables
+geo:
+  gse100494:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE100494/GSE100494_samples.yaml
+    href: /pep/geo/gse100494
+    n_samples: 2
+    name: GSE100494
+  gse100750:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE100750/GSE100750_samples.yaml
+    href: /pep/geo/gse100750
+    n_samples: 18
+    name: GSE100750
+  gse101426:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE101426/GSE101426_samples.yaml
+    href: /pep/geo/gse101426
+    n_samples: 8
+    name: GSE101426
+  gse101512:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE101512/GSE101512_samples.yaml
+    href: /pep/geo/gse101512
+    n_samples: 12
+    name: GSE101512
+  gse101516:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE101516/GSE101516_samples.yaml
+    href: /pep/geo/gse101516
+    n_samples: 18
+    name: GSE101516
+  gse101966:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE101966/GSE101966_samples.yaml
+    href: /pep/geo/gse101966
+    n_samples: 40
+    name: GSE101966
+  gse101974:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE101974/GSE101974_samples.yaml
+    href: /pep/geo/gse101974
+    n_samples: 16
+    name: GSE101974
+  gse102803:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE102803/GSE102803_samples.yaml
+    href: /pep/geo/gse102803
+    n_samples: 6
+    name: GSE102803
+  gse102804:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE102804/GSE102804_samples.yaml
+    href: /pep/geo/gse102804
+    n_samples: 15
+    name: GSE102804
+  gse102805:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE102805/GSE102805_samples.yaml
+    href: /pep/geo/gse102805
+    n_samples: 3
+    name: GSE102805
+  gse104545:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE104545/GSE104545_samples.yaml
+    href: /pep/geo/gse104545
+    n_samples: 36
+    name: GSE104545
+  gse107017:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE107017/GSE107017_samples.yaml
+    href: /pep/geo/gse107017
+    n_samples: 4
+    name: GSE107017
+  gse107176:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE107176/GSE107176_samples.yaml
+    href: /pep/geo/gse107176
+    n_samples: 53
+    name: GSE107176
+  gse109398:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE109398/GSE109398_samples.yaml
+    href: /pep/geo/gse109398
+    n_samples: 43
+    name: GSE109398
+  gse109411:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE109411/GSE109411_samples.yaml
+    href: /pep/geo/gse109411
+    n_samples: 12
+    name: GSE109411
+  gse109785:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE109785/GSE109785_samples.yaml
+    href: /pep/geo/gse109785
+    n_samples: 3
+    name: GSE109785
+  gse109890:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE109890/GSE109890_samples.yaml
+    href: /pep/geo/gse109890
+    n_samples: 4
+    name: GSE109890
+  gse109891:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE109891/GSE109891_samples.yaml
+    href: /pep/geo/gse109891
+    n_samples: 8
+    name: GSE109891
+  gse110630:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE110630/GSE110630_samples.yaml
+    href: /pep/geo/gse110630
+    n_samples: 1
+    name: GSE110630
+  gse110631:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE110631/GSE110631_samples.yaml
+    href: /pep/geo/gse110631
+    n_samples: 2
+    name: GSE110631
+  gse110632:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE110632/GSE110632_samples.yaml
+    href: /pep/geo/gse110632
+    n_samples: 9
+    name: GSE110632
+  gse110633:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE110633/GSE110633_samples.yaml
+    href: /pep/geo/gse110633
+    n_samples: 60
+    name: GSE110633
+  gse110634:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE110634/GSE110634_samples.yaml
+    href: /pep/geo/gse110634
+    n_samples: 6
+    name: GSE110634
+  gse110635:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE110635/GSE110635_samples.yaml
+    href: /pep/geo/gse110635
+    n_samples: 9
+    name: GSE110635
+  gse110636:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE110636/GSE110636_samples.yaml
+    href: /pep/geo/gse110636
+    n_samples: 25
+    name: GSE110636
+  gse111013:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE111013/GSE111013_samples.yaml
+    href: /pep/geo/gse111013
+    n_samples: 176
+    name: GSE111013
+  gse111015:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE111015/GSE111015_samples.yaml
+    href: /pep/geo/gse111015
+    n_samples: 176
+    name: GSE111015
+  gse112852:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE112852/GSE112852_samples.yaml
+    href: /pep/geo/gse112852
+    n_samples: 47
+    name: GSE112852
+  gse114397:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE114397/GSE114397_samples.yaml
+    href: /pep/geo/gse114397
+    n_samples: 2
+    name: GSE114397
+  gse114964:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE114964/GSE114964_samples.yaml
+    href: /pep/geo/gse114964
+    n_samples: 24
+    name: GSE114964
+  gse115617:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE115617/GSE115617_samples.yaml
+    href: /pep/geo/gse115617
+    n_samples: 2
+    name: GSE115617
+  gse118092:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE118092/GSE118092_samples.yaml
+    href: /pep/geo/gse118092
+    n_samples: 6
+    name: GSE118092
+  gse118204:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE118204/GSE118204_samples.yaml
+    href: /pep/geo/gse118204
+    n_samples: 32
+    name: GSE118204
+  gse118207:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE118207/GSE118207_samples.yaml
+    href: /pep/geo/gse118207
+    n_samples: 74
+    name: GSE118207
+  gse121351:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE121351/GSE121351_samples.yaml
+    href: /pep/geo/gse121351
+    n_samples: 36
+    name: GSE121351
+  gse121755:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE121755/GSE121755_samples.yaml
+    href: /pep/geo/gse121755
+    n_samples: 14
+    name: GSE121755
+  gse122236:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE122236/GSE122236_samples.yaml
+    href: /pep/geo/gse122236
+    n_samples: 6
+    name: GSE122236
+  gse122237:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE122237/GSE122237_samples.yaml
+    href: /pep/geo/gse122237
+    n_samples: 18
+    name: GSE122237
+  gse124224:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE124224/GSE124224_samples.yaml
+    href: /pep/geo/gse124224
+    n_samples: 20
+    name: GSE124224
+  gse124228:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE124228/GSE124228_samples.yaml
+    href: /pep/geo/gse124228
+    n_samples: 46
+    name: GSE124228
+  gse124229:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE124229/GSE124229_samples.yaml
+    href: /pep/geo/gse124229
+    n_samples: 80
+    name: GSE124229
+  gse124409:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE124409/GSE124409_samples.yaml
+    href: /pep/geo/gse124409
+    n_samples: 6
+    name: GSE124409
+  gse124864:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE124864/GSE124864_samples.yaml
+    href: /pep/geo/gse124864
+    n_samples: 64
+    name: GSE124864
+  gse126918:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE126918/GSE126918_samples.yaml
+    href: /pep/geo/gse126918
+    n_samples: 79
+    name: GSE126918
+  gse127241:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE127241/GSE127241_samples.yaml
+    href: /pep/geo/gse127241
+    n_samples: 15
+    name: GSE127241
+  gse127511:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE127511/GSE127511_samples.yaml
+    href: /pep/geo/gse127511
+    n_samples: 8
+    name: GSE127511
+  gse127514:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE127514/GSE127514_samples.yaml
+    href: /pep/geo/gse127514
+    n_samples: 15
+    name: GSE127514
+  gse127957:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE127957/GSE127957_samples.yaml
+    href: /pep/geo/gse127957
+    n_samples: 64
+    name: GSE127957
+  gse128100:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE128100/GSE128100_samples.yaml
+    href: /pep/geo/gse128100
+    n_samples: 8
+    name: GSE128100
+  gse128271:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE128271/GSE128271_samples.yaml
+    href: /pep/geo/gse128271
+    n_samples: 10
+    name: GSE128271
+  gse128272:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE128272/GSE128272_samples.yaml
+    href: /pep/geo/gse128272
+    n_samples: 20
+    name: GSE128272
+  gse128444:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE128444/GSE128444_samples.yaml
+    href: /pep/geo/gse128444
+    n_samples: 10
+    name: GSE128444
+  gse128744:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE128744/GSE128744_samples.yaml
+    href: /pep/geo/gse128744
+    n_samples: 12
+    name: GSE128744
+  gse129802:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE129802/GSE129802_samples.yaml
+    href: /pep/geo/gse129802
+    n_samples: 6
+    name: GSE129802
+  gse129805:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE129805/GSE129805_samples.yaml
+    href: /pep/geo/gse129805
+    n_samples: 24
+    name: GSE129805
+  gse130140:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE130140/GSE130140_samples.yaml
+    href: /pep/geo/gse130140
+    n_samples: 74
+    name: GSE130140
+  gse130205:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE130205/GSE130205_samples.yaml
+    href: /pep/geo/gse130205
+    n_samples: 2
+    name: GSE130205
+  gse130408:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE130408/GSE130408_samples.yaml
+    href: /pep/geo/gse130408
+    n_samples: 249
+    name: GSE130408
+  gse131026:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE131026/GSE131026_samples.yaml
+    href: /pep/geo/gse131026
+    n_samples: 16
+    name: GSE131026
+  gse131257:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE131257/GSE131257_samples.yaml
+    href: /pep/geo/gse131257
+    n_samples: 19
+    name: GSE131257
+  gse131604:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE131604/GSE131604_samples.yaml
+    href: /pep/geo/gse131604
+    n_samples: 32
+    name: GSE131604
+  gse131687:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE131687/GSE131687_samples.yaml
+    href: /pep/geo/gse131687
+    n_samples: 27
+    name: GSE131687
+  gse131915:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE131915/GSE131915_samples.yaml
+    href: /pep/geo/gse131915
+    n_samples: 8
+    name: GSE131915
+  gse131956:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE131956/GSE131956_samples.yaml
+    href: /pep/geo/gse131956
+    n_samples: 20
+    name: GSE131956
+  gse132046:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE132046/GSE132046_samples.yaml
+    href: /pep/geo/gse132046
+    n_samples: 4
+    name: GSE132046
+  gse132209:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE132209/GSE132209_samples.yaml
+    href: /pep/geo/gse132209
+    n_samples: 1
+    name: GSE132209
+  gse132424:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE132424/GSE132424_samples.yaml
+    href: /pep/geo/gse132424
+    n_samples: 20
+    name: GSE132424
+  gse132430:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE132430/GSE132430_samples.yaml
+    href: /pep/geo/gse132430
+    n_samples: 40
+    name: GSE132430
+  gse132434:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE132434/GSE132434_samples.yaml
+    href: /pep/geo/gse132434
+    n_samples: 2
+    name: GSE132434
+  gse132749:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE132749/GSE132749_samples.yaml
+    href: /pep/geo/gse132749
+    n_samples: 19
+    name: GSE132749
+  gse133327:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE133327/GSE133327_samples.yaml
+    href: /pep/geo/gse133327
+    n_samples: 11
+    name: GSE133327
+  gse133785:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE133785/GSE133785_samples.yaml
+    href: /pep/geo/gse133785
+    n_samples: 6
+    name: GSE133785
+  gse134654:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE134654/GSE134654_samples.yaml
+    href: /pep/geo/gse134654
+    n_samples: 36
+    name: GSE134654
+  gse134655:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE134655/GSE134655_samples.yaml
+    href: /pep/geo/gse134655
+    n_samples: 36
+    name: GSE134655
+  gse134656:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE134656/GSE134656_samples.yaml
+    href: /pep/geo/gse134656
+    n_samples: 54
+    name: GSE134656
+  gse134657:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE134657/GSE134657_samples.yaml
+    href: /pep/geo/gse134657
+    n_samples: 138
+    name: GSE134657
+  gse134744:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE134744/GSE134744_samples.yaml
+    href: /pep/geo/gse134744
+    n_samples: 44
+    name: GSE134744
+  gse134745:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE134745/GSE134745_samples.yaml
+    href: /pep/geo/gse134745
+    n_samples: 126
+    name: GSE134745
+  gse134864:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE134864/GSE134864_samples.yaml
+    href: /pep/geo/gse134864
+    n_samples: 25
+    name: GSE134864
+  gse135025:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE135025/GSE135025_samples.yaml
+    href: /pep/geo/gse135025
+    n_samples: 2
+    name: GSE135025
+  gse135026:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE135026/GSE135026_samples.yaml
+    href: /pep/geo/gse135026
+    n_samples: 14
+    name: GSE135026
+  gse136016:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE136016/GSE136016_samples.yaml
+    href: /pep/geo/gse136016
+    n_samples: 53
+    name: GSE136016
+  gse136796:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE136796/GSE136796_samples.yaml
+    href: /pep/geo/gse136796
+    n_samples: 20
+    name: GSE136796
+  gse137397:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE137397/GSE137397_samples.yaml
+    href: /pep/geo/gse137397
+    n_samples: 9
+    name: GSE137397
+  gse137579:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE137579/GSE137579_samples.yaml
+    href: /pep/geo/gse137579
+    n_samples: 85
+    name: GSE137579
+  gse137647:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE137647/GSE137647_samples.yaml
+    href: /pep/geo/gse137647
+    n_samples: 5
+    name: GSE137647
+  gse137775:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE137775/GSE137775_samples.yaml
+    href: /pep/geo/gse137775
+    n_samples: 20
+    name: GSE137775
+  gse138315:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE138315/GSE138315_samples.yaml
+    href: /pep/geo/gse138315
+    n_samples: 55
+    name: GSE138315
+  gse138460:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE138460/GSE138460_samples.yaml
+    href: /pep/geo/gse138460
+    n_samples: 40
+    name: GSE138460
+  gse138571:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE138571/GSE138571_samples.yaml
+    href: /pep/geo/gse138571
+    n_samples: 10
+    name: GSE138571
+  gse138656:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE138656/GSE138656_samples.yaml
+    href: /pep/geo/gse138656
+    n_samples: 2
+    name: GSE138656
+  gse138657:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE138657/GSE138657_samples.yaml
+    href: /pep/geo/gse138657
+    n_samples: 14
+    name: GSE138657
+  gse138698:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE138698/GSE138698_samples.yaml
+    href: /pep/geo/gse138698
+    n_samples: 71
+    name: GSE138698
+  gse138794:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE138794/GSE138794_samples.yaml
+    href: /pep/geo/gse138794
+    n_samples: 28
+    name: GSE138794
+  gse139099:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE139099/GSE139099_samples.yaml
+    href: /pep/geo/gse139099
+    n_samples: 36
+    name: GSE139099
+  gse139190:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE139190/GSE139190_samples.yaml
+    href: /pep/geo/gse139190
+    n_samples: 28
+    name: GSE139190
+  gse140251:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE140251/GSE140251_samples.yaml
+    href: /pep/geo/gse140251
+    n_samples: 4
+    name: GSE140251
+  gse140505:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE140505/GSE140505_samples.yaml
+    href: /pep/geo/gse140505
+    n_samples: 8
+    name: GSE140505
+  gse140940:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE140940/GSE140940_samples.yaml
+    href: /pep/geo/gse140940
+    n_samples: 32
+    name: GSE140940
+  gse141060:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE141060/GSE141060_samples.yaml
+    href: /pep/geo/gse141060
+    n_samples: 6
+    name: GSE141060
+  gse141350:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE141350/GSE141350_samples.yaml
+    href: /pep/geo/gse141350
+    n_samples: 16
+    name: GSE141350
+  gse141351:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE141351/GSE141351_samples.yaml
+    href: /pep/geo/gse141351
+    n_samples: 16
+    name: GSE141351
+  gse141354:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE141354/GSE141354_samples.yaml
+    href: /pep/geo/gse141354
+    n_samples: 20
+    name: GSE141354
+  gse142031:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE142031/GSE142031_samples.yaml
+    href: /pep/geo/gse142031
+    n_samples: 8
+    name: GSE142031
+  gse142604:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE142604/GSE142604_samples.yaml
+    href: /pep/geo/gse142604
+    n_samples: 32
+    name: GSE142604
+  gse143145:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE143145/GSE143145_samples.yaml
+    href: /pep/geo/gse143145
+    n_samples: 22
+    name: GSE143145
+  gse143256:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE143256/GSE143256_samples.yaml
+    href: /pep/geo/gse143256
+    n_samples: 19
+    name: GSE143256
+  gse143563:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE143563/GSE143563_samples.yaml
+    href: /pep/geo/gse143563
+    n_samples: 6
+    name: GSE143563
+  gse143684:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE143684/GSE143684_samples.yaml
+    href: /pep/geo/gse143684
+    n_samples: 12
+    name: GSE143684
+  gse144580:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE144580/GSE144580_samples.yaml
+    href: /pep/geo/gse144580
+    n_samples: 9
+    name: GSE144580
+  gse144833:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE144833/GSE144833_samples.yaml
+    href: /pep/geo/gse144833
+    n_samples: 6
+    name: GSE144833
+  gse144840:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE144840/GSE144840_samples.yaml
+    href: /pep/geo/gse144840
+    n_samples: 48
+    name: GSE144840
+  gse144844:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE144844/GSE144844_samples.yaml
+    href: /pep/geo/gse144844
+    n_samples: 77
+    name: GSE144844
+  gse144925:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE144925/GSE144925_samples.yaml
+    href: /pep/geo/gse144925
+    n_samples: 2
+    name: GSE144925
+  gse144926:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE144926/GSE144926_samples.yaml
+    href: /pep/geo/gse144926
+    n_samples: 2
+    name: GSE144926
+  gse145182:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE145182/GSE145182_samples.yaml
+    href: /pep/geo/gse145182
+    n_samples: 6
+    name: GSE145182
+  gse145245:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE145245/GSE145245_samples.yaml
+    href: /pep/geo/gse145245
+    n_samples: 21
+    name: GSE145245
+  gse145409:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE145409/GSE145409_samples.yaml
+    href: /pep/geo/gse145409
+    n_samples: 2
+    name: GSE145409
+  gse145663:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE145663/GSE145663_samples.yaml
+    href: /pep/geo/gse145663
+    n_samples: 8
+    name: GSE145663
+  gse146537:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE146537/GSE146537_samples.yaml
+    href: /pep/geo/gse146537
+    n_samples: 6
+    name: GSE146537
+  gse146539:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE146539/GSE146539_samples.yaml
+    href: /pep/geo/gse146539
+    n_samples: 24
+    name: GSE146539
+  gse146583:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE146583/GSE146583_samples.yaml
+    href: /pep/geo/gse146583
+    n_samples: 42
+    name: GSE146583
+  gse146617:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE146617/GSE146617_samples.yaml
+    href: /pep/geo/gse146617
+    n_samples: 15
+    name: GSE146617
+  gse148278:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE148278/GSE148278_samples.yaml
+    href: /pep/geo/gse148278
+    n_samples: 26
+    name: GSE148278
+  gse148695:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE148695/GSE148695_samples.yaml
+    href: /pep/geo/gse148695
+    n_samples: 17
+    name: GSE148695
+  gse69143:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE69143/GSE69143_samples.yaml
+    href: /pep/geo/gse69143
+    n_samples: 12
+    name: GSE69143
+  gse73874:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE73874/GSE73874_samples.yaml
+    href: /pep/geo/gse73874
+    n_samples: 3
+    name: GSE73874
+  gse74180:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE74180/GSE74180_samples.yaml
+    href: /pep/geo/gse74180
+    n_samples: 29
+    name: GSE74180
+  gse76224:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE76224/GSE76224_samples.yaml
+    href: /pep/geo/gse76224
+    n_samples: 12
+    name: GSE76224
+  gse80152:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE80152/GSE80152_samples.yaml
+    href: /pep/geo/gse80152
+    n_samples: 5
+    name: GSE80152
+  gse80154:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE80154/GSE80154_samples.yaml
+    href: /pep/geo/gse80154
+    n_samples: 87
+    name: GSE80154
+  gse81274:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE81274/GSE81274_samples.yaml
+    href: /pep/geo/gse81274
+    n_samples: 138
+    name: GSE81274
+  gse82330:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE82330/GSE82330_samples.yaml
+    href: /pep/geo/gse82330
+    n_samples: 2
+    name: GSE82330
+  gse83345:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE83345/GSE83345_samples.yaml
+    href: /pep/geo/gse83345
+    n_samples: 16
+    name: GSE83345
+  gse83968:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE83968/GSE83968_samples.yaml
+    href: /pep/geo/gse83968
+    n_samples: 39
+    name: GSE83968
+  gse84515:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE84515/GSE84515_samples.yaml
+    href: /pep/geo/gse84515
+    n_samples: 4
+    name: GSE84515
+  gse89668:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE89668/GSE89668_samples.yaml
+    href: /pep/geo/gse89668
+    n_samples: 14
+    name: GSE89668
+  gse94272:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE94272/GSE94272_samples.yaml
+    href: /pep/geo/gse94272
+    n_samples: 13
+    name: GSE94272
+  gse94278:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE94278/GSE94278_samples.yaml
+    href: /pep/geo/gse94278
+    n_samples: 56
+    name: GSE94278
+  gse96088:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE96088/GSE96088_samples.yaml
+    href: /pep/geo/gse96088
+    n_samples: 11
+    name: GSE96088
+  gse97003:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE97003/GSE97003_samples.yaml
+    href: /pep/geo/gse97003
+    n_samples: 11
+    name: GSE97003
+  gse97008:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE97008/GSE97008_samples.yaml
+    href: /pep/geo/gse97008
+    n_samples: 2
+    name: GSE97008
+  gse97014:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE97014/GSE97014_samples.yaml
+    href: /pep/geo/gse97014
+    n_samples: 2
+    name: GSE97014
+  gse97410:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE97410/GSE97410_samples.yaml
+    href: /pep/geo/gse97410
+    n_samples: 9
+    name: GSE97410
+  gse97680:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE97680/GSE97680_samples.yaml
+    href: /pep/geo/gse97680
+    n_samples: 17
+    name: GSE97680
+  gse97889:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE97889/GSE97889_samples.yaml
+    href: /pep/geo/gse97889
+    n_samples: 14
+    name: GSE97889
+  gse99311:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE99311/GSE99311_samples.yaml
+    href: /pep/geo/gse99311
+    n_samples: 96
+    name: GSE99311
+  gse99378:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE99378/GSE99378_samples.yaml
+    href: /pep/geo/gse99378
+    n_samples: 4
+    name: GSE99378
+  gse99542:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE99542/GSE99542_samples.yaml
+    href: /pep/geo/gse99542
+    n_samples: 2
+    name: GSE99542
+  gse99544:
+    cfg: /Users/nathanleroy/Documents/uva/lab/code/pepstat/tests/data/geo/GSE99544/GSE99544_samples.yaml
+    href: /pep/geo/gse99544
+    n_samples: 28
+    name: GSE99544

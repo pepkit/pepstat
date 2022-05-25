@@ -1,10 +1,11 @@
 from logging import getLogger
+import peppy
 import yaml
 import os
 import pathlib
 from tqdm import tqdm
 from .const import PKG_NAME
-from .exceptions import PipstatError
+from .exceptions import PEPstatError
 
 _LOGGER = getLogger(PKG_NAME)
 
@@ -14,7 +15,7 @@ class PEPIndexer():
     def __init__(self):
         self.index_store = None
 
-    def _is_valid_namespace(self, path: str, name: str) -> bool:
+    def _is_valid_namespace(self, path: str) -> bool:
         """
         Check if a given path is a valid namespace directory. Function
         Will check a given path for the following criteria:
@@ -22,12 +23,12 @@ class PEPIndexer():
             2. Is not a "dot" file (e.g. .git)
         
         :param str path - path to potential namespace
-        :param str name - name of namespace
         """
+        name = pathlib.Path(path).name
         criteria = [os.path.isdir(path), not name.startswith(".")]
         return all(criteria)
 
-    def _is_valid_project(self, path: str, name: str) -> bool:
+    def _is_valid_project(self, path: str) -> bool:
         """
         Check if a given project name is a valid project
         directory. Will check a given project for the following
@@ -36,8 +37,8 @@ class PEPIndexer():
             2. Is not a "dot" file (e.g. .git)
         
         :param str path - path potential project
-        :param str name - name of project
         """
+        name = pathlib.Path(path).name
         criteria = [os.path.isdir(path), not name.startswith(".")]
         return all(criteria)
 
@@ -95,17 +96,17 @@ class PEPIndexer():
         # check path exists ... make if not
         if not os.path.exists(output):
             filepath = pathlib.Path(output)
-            filepath.mkdir(parents=True, exist_ok=True)
+            filepath.parent.mkdir(parents=True, exist_ok=True)
 
         # init datastore dict if it doesn't already exist
-        if any(self.index_store is None, reset):
+        if any([self.index_store is None, reset]):
             self.index_store = {}
 
         # traverse directory
         for name in tqdm(os.listdir(path), desc="Indexing repository", leave=True):
             # build a path to the namespace
             path_to_namespace = f"{path}/{name}"
-            if self._is_valid_namespace(path_to_namespace, name):
+            if self._is_valid_namespace(path_to_namespace):
                 # init sub-dict
                 self.index_store[name.lower()] = {}
 
@@ -113,10 +114,20 @@ class PEPIndexer():
                 for proj in tqdm(os.listdir(path_to_namespace), desc=f"Indexing {name}", leave=True):
                     # build path to project
                     path_to_proj = f"{path_to_namespace}/{proj}"
-                    if self._is_valid_project(path_to_proj, proj):
+                    if self._is_valid_project(path_to_proj):
                         self.index_store[name.lower()][
                             proj.lower()
-                        ] = f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}"
+                        ] = {
+                            'name': proj,
+                            'cfg': f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}"
+                        }
+
+                        # store number of samples in project by loading project into memory
+                        p = peppy.Project(self.index_store[name.lower()][proj.lower()]['cfg'])
+                        self.index_store[name.lower()][proj.lower()]['n_samples'] = len(p.samples)
+
+                        # store href
+                        self.index_store[name.lower()][proj.lower()]['href'] = f"/pep/{name.lower()}/{proj.lower()}"
 
         # dump to yaml
         with open(output, 'w') as fh:
