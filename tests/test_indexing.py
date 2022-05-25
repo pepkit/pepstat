@@ -21,3 +21,9 @@ class TestIndexing:
 
         assert os.path.exists(result_path)
     
+    def test_read_index(self, data_path):
+        indxr = PEPIndexer()
+        indxr.load_index(f"{data_path}/index.yaml")
+
+        assert isinstance(indxr.get_index(), dict)
+    
