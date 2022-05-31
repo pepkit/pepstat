@@ -152,7 +152,7 @@ class PEPIndexer(PathExAttMap):
 
         # dump to yaml
         with open(output, "w") as fh:
-            yaml.dump(self[INDEX_STORE_KEY].__repr__, fh)
+            yaml.dump(self[INDEX_STORE_KEY].to_dict(), fh)
 
         return self[INDEX_STORE_KEY]
 
