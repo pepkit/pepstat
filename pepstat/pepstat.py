@@ -164,7 +164,42 @@ class PEPIndexer(PathExAttMap):
             yaml.dump(self[INDEX_STORE_KEY].to_dict(), fh)
 
         return self[INDEX_STORE_KEY]
+    
+    def get_namespace(self, namespace: str) -> dict:
+        """
+        Get a particular namespace's info/meta-data
 
+        :param str namespace - the desited namespace
+        """
+        return self[INDEX_STORE_KEY].get(namespace)
+    
+    def get_namespaces(self, names_only=False) -> List[Union[str, dict]]:
+        """
+        Return a list of namespace names in the index
+
+        :param boolean names_only - a flag to indicate the user only wants the
+                                    names of the namespaces (i.e. no meta data)
+        """
+        nspaces = [n for n in self[INDEX_STORE_KEY] if n is not INFO_KEY]
+        if names_only:
+            return nspaces
+        else:
+            return [{
+                'name': n,
+                'info': self[INDEX_STORE_KEY][n][INFO_KEY]
+            } for n in nspaces]
+    
+    def get_project(self, namespace: str, project: str) -> dict:
+        """
+        Return a dict of a specific PEP's data
+
+        :param str namespace - namespace where the project lives
+        :param str project - name of the project to get
+        """
+        if project not in self[INDEX_STORE_KEY][namespace][PROJECTS_KEY]:
+            raise ProjectNotFoundError(f"Could not find project '{project}' in '{namespace}'")
+        return self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project]
+    
     def get_projects(self, namespace: str = None) -> List[dict]:
         """
         Return a list of project representations (dicts). Can either
@@ -188,30 +223,6 @@ class PEPIndexer(PathExAttMap):
                     ]
                 )
             )
-    
-    def get_namespaces(self, names_only=False) -> List[Union[str, dict]]:
-        """
-        Return a list of namespace names in the index 
-        """
-        nspaces = [n for n in self[INDEX_STORE_KEY] if n is not INFO_KEY]
-        if names_only:
-            return nspaces
-        else:
-            return [{
-                'name': n,
-                'info': self[INDEX_STORE_KEY][n][INFO_KEY]
-            } for n in nspaces]
-    
-    def get_project(self, namespace: str, project: str) -> dict:
-        """
-        Return a dict of a PEP projects data
-
-        :param str namespace - namespace where the project lives
-        :param str project - name of the project to get
-        """
-        if project not in self[INDEX_STORE_KEY][namespace][PROJECTS_KEY]:
-            raise ProjectNotFoundError(f"Could not find project '{project}' in '{namespace}'")
-        return self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project]
 
     def get_index(self) -> dict:
         """Return dict representation of the index"""
