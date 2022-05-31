@@ -198,4 +198,3 @@ class PEPIndexer(PathExAttMap):
         """
         with open(path, "r") as fh:
             self[INDEX_STORE_KEY] = yaml.safe_load(fh)
-        return

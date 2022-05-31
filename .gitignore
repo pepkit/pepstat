@@ -86,5 +86,8 @@ env
 .env
 .venv
 
+<<<<<<< HEAD
 # package specific
+=======
+>>>>>>> 3e1378fa052e5a438bf1e036440a7b6a1766f60e
 index.yaml
