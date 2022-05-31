@@ -171,7 +171,10 @@ class PEPIndexer(PathExAttMap):
 
         :param str namespace - the desited namespace
         """
-        return self[INDEX_STORE_KEY].get(namespace)
+        if namespace in self[INDEX_STORE_KEY]:
+            return self[INDEX_STORE_KEY][namespace]
+        else:
+            return None
     
     def get_namespaces(self, names_only=False) -> List[Union[str, dict]]:
         """
@@ -197,8 +200,9 @@ class PEPIndexer(PathExAttMap):
         :param str project - name of the project to get
         """
         if project not in self[INDEX_STORE_KEY][namespace][PROJECTS_KEY]:
-            raise ProjectNotFoundError(f"Could not find project '{project}' in '{namespace}'")
-        return self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project]
+            return None
+        else:
+            return self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project]
     
     def get_projects(self, namespace: str = None) -> List[dict]:
         """
