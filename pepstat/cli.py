@@ -4,6 +4,8 @@ from logging import getLogger
 import logmuse
 from ubiquerg import expandpath
 
+from pepstat.pepstat import PEPIndexer
+
 from .argparser import build_argparser
 from .const import *
 from .exceptions import *
@@ -25,7 +27,10 @@ def main():
     _LOGGER.debug("Args namespace:\n{}".format(args))
 
     if args.command == INDEX_CMD:
-        _LOGGER.info("Running")
+        _LOGGER.info("Beginning index.")
+        indxr = PEPIndexer()
+        indxr.index(args.path, args.output)
+        _LOGGER.info(f"Indexing complete. Index written to: {args.output}.")
     else:
         raise UnknwownCommandError(f"Received unknown command: {args.command}")
 

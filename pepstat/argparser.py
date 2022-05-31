@@ -1,4 +1,5 @@
 import argparse
+from email.policy import default
 
 from ubiquerg import VersionInHelpParser
 
@@ -18,13 +19,6 @@ def build_argparser(desc):
         version=__version__, description=banner, epilog=additional_description
     )
 
-    parser.add_argument(
-        "-V",
-        "--version",
-        action="version",
-        version="%(prog)s {v}".format(v=__version__),
-    )
-
     subparsers = parser.add_subparsers(dest="command")
 
     def add_subparser(cmd, msg):
@@ -40,7 +34,10 @@ def build_argparser(desc):
     sps = {}
     sps[INDEX_CMD] = add_subparser(INDEX_CMD, "Index a repository of peps.")
     sps[INDEX_CMD].add_argument(
-        "-p", "--path", dest="path", required=True, help="Path/URL to PEP repository."
+        "path", help="Path/URL to PEP repository."
+    )
+    sps[INDEX_CMD].add_argument(
+        "-o", "--output", dest="output", help="Path to the output file.", default="index.yaml"
     )
 
     return parser

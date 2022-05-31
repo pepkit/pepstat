@@ -1,5 +1,5 @@
 from logging import getLogger
-from typing import List
+from typing import List, Union
 import peppy
 import yaml
 import os
@@ -7,8 +7,8 @@ import pathlib
 from itertools import chain
 from attmap import PathExAttMap
 from tqdm import tqdm
-from .const import INDEX_STORE_KEY, INFO_KEY, PKG_NAME, PROJECTS_KEY
-from .exceptions import NamespaceNotFoundError, PEPstatError
+from .const import INDEX_STORE_KEY, INFO_KEY, N_PROJECTS_KEY, N_SAMPLES_KEY, PKG_NAME, PROJECTS_KEY
+from .exceptions import NamespaceNotFoundError, PEPstatError, ProjectNotFoundError
 
 _LOGGER = getLogger(PKG_NAME)
 
@@ -129,6 +129,8 @@ class PEPIndexer(PathExAttMap):
             if self._is_valid_namespace(path_to_namespace):
                 # init sub-dict
                 self[INDEX_STORE_KEY][name] = {PROJECTS_KEY: {}}
+
+                # populate info
                 self[INDEX_STORE_KEY][name][INFO_KEY] = self._extract_namespace_info(
                     path_to_namespace
                 )
@@ -148,7 +150,14 @@ class PEPIndexer(PathExAttMap):
 
                         # store number of samples in project by loading project into memory
                         p = peppy.Project(self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj]["cfg"])
-                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj]["n_samples"] = len(p.samples)
+                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj][N_SAMPLES_KEY] = len(p.samples)
+                
+                self[INDEX_STORE_KEY][name][INFO_KEY][N_PROJECTS_KEY] = len(
+                    self[INDEX_STORE_KEY][name][PROJECTS_KEY]
+                )
+                self[INDEX_STORE_KEY][name][INFO_KEY][N_SAMPLES_KEY] = sum(
+                    self[INDEX_STORE_KEY][name][PROJECTS_KEY][p][N_SAMPLES_KEY] for p in self[INDEX_STORE_KEY][name][PROJECTS_KEY]
+                )
 
         # dump to yaml
         with open(output, "w") as fh:
@@ -180,11 +189,29 @@ class PEPIndexer(PathExAttMap):
                 )
             )
     
-    def get_namespaces(self) -> List[str]:
+    def get_namespaces(self, names_only=False) -> List[Union[str, dict]]:
         """
         Return a list of namespace names in the index 
         """
-        return [n for n in self[INDEX_STORE_KEY] if n is not INFO_KEY]
+        nspaces = [n for n in self[INDEX_STORE_KEY] if n is not INFO_KEY]
+        if names_only:
+            return nspaces
+        else:
+            return [{
+                'name': n,
+                'info': self[INDEX_STORE_KEY][n][INFO_KEY]
+            } for n in nspaces]
+    
+    def get_project(self, namespace: str, project: str) -> dict:
+        """
+        Return a dict of a PEP projects data
+
+        :param str namespace - namespace where the project lives
+        :param str project - name of the project to get
+        """
+        if project not in self[INDEX_STORE_KEY][namespace][PROJECTS_KEY]:
+            raise ProjectNotFoundError(f"Could not find project '{project}' in '{namespace}'")
+        return self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project]
 
     def get_index(self) -> dict:
         """Return dict representation of the index"""

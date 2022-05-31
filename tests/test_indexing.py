@@ -41,6 +41,6 @@ class TestIndexing:
             "demo", "changlab", "geo"
         ]
         assert all(
-            nspace in pep_indxr.get_namespaces() for nspace in valid_nspaces
+            nspace in pep_indxr.get_namespaces(names_only=True) for nspace in valid_nspaces
         )
-        assert len(valid_nspaces) == len(pep_indxr.get_namespaces())
+        assert len(valid_nspaces) == len(pep_indxr.get_namespaces(names_only=True))
