@@ -20,6 +20,7 @@ class NamespaceNotFoundError(PEPstatError):
     def __init__(self, msg):
         super(PEPstatError, self).__init__(msg)
 
+
 class ProjectNotFoundError(PEPstatError):
     """Exception for unknown project"""
 

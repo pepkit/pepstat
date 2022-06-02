@@ -1,4 +1,5 @@
 from logging import getLogger
+from random import sample
 from typing import List, Union
 import peppy
 import yaml
@@ -7,7 +8,17 @@ import pathlib
 from itertools import chain
 from attmap import PathExAttMap
 from tqdm import tqdm
-from .const import INDEX_STORE_KEY, INFO_KEY, N_PROJECTS_KEY, N_SAMPLES_KEY, PKG_NAME, PROJECTS_KEY
+from .const import (
+    DELIM,
+    HEADER_COLS,
+    INDEX_STORE_KEY,
+    INFO_KEY,
+    N_PROJECTS_KEY,
+    N_SAMPLES_KEY,
+    PEP_VERSION,
+    PKG_NAME,
+    PROJECTS_KEY,
+)
 from .exceptions import NamespaceNotFoundError, PEPstatError, ProjectNotFoundError
 
 _LOGGER = getLogger(PKG_NAME)
@@ -100,6 +111,60 @@ class PEPIndexer(PathExAttMap):
                     This project will not be accessible by pephub. "
                 )
             return "project_config.yaml"
+    
+    def _write_pop_cfg(self, cfg_path: str, sample_table_path: str):
+        """
+        Create the pop confgiuration file
+        """
+        cfg = {
+            'pep_version': PEP_VERSION,
+            'sample_table': sample_table_path
+        }
+        with open(cfg_path, 'w') as fh:
+            yaml.dump(cfg, fh)
+            
+
+    def generate_pop(
+        self, path: str, cfg_name: str = "pop.yaml", sample_table_path: str = "peps.csv"
+    ):
+        """
+        Given a directory of PEPs in the namespace/project format, generate one unifying PEP of PEPs (POP)
+        to be used as input to looper for indexing.
+        """
+        # check path exists ... make if not
+        if not os.path.exists(path):
+            raise FileNotFoundError(f"Path to PEPs does not exist: '{path}'")
+        
+        # init the cfg file
+        self._write_pop_cfg(cfg_name, sample_table_path)
+        
+        with open(sample_table_path, 'w') as fh:
+            # write the csv header
+            fh.write(DELIM.join(HEADER_COLS)+"\n")
+            # traverse directory
+            for name in tqdm(os.listdir(path), desc="Analyzing repository", leave=True):
+                # build a path to the namespace
+                path_to_namespace = f"{path}/{name}"
+                name = name.lower()
+
+                if self._is_valid_namespace(path_to_namespace):
+                    # traverse projects
+                    for proj in tqdm(
+                        os.listdir(path_to_namespace), desc=f"Analyzing {name}", leave=True
+                    ):
+                        # build path to project
+                        path_to_proj = f"{path_to_namespace}/{proj}"
+                        proj = proj.lower()
+
+                        if self._is_valid_project(path_to_proj):
+                            # build cfg file
+                            cfg_file = f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}"
+
+                            sample_table_row = DELIM.join([
+                                f"{name}-{proj}", name, proj, cfg_file
+                            ])
+                            fh.write(sample_table_row+"\n")
+
 
     def index(self, path: str, output: str = "index.yaml", reset=False) -> None:
         """
@@ -149,14 +214,19 @@ class PEPIndexer(PathExAttMap):
                         }
 
                         # store number of samples in project by loading project into memory
-                        p = peppy.Project(self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj]["cfg"])
-                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj][N_SAMPLES_KEY] = len(p.samples)
-                
+                        p = peppy.Project(
+                            self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj]["cfg"]
+                        )
+                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj][
+                            N_SAMPLES_KEY
+                        ] = len(p.samples)
+
                 self[INDEX_STORE_KEY][name][INFO_KEY][N_PROJECTS_KEY] = len(
                     self[INDEX_STORE_KEY][name][PROJECTS_KEY]
                 )
                 self[INDEX_STORE_KEY][name][INFO_KEY][N_SAMPLES_KEY] = sum(
-                    self[INDEX_STORE_KEY][name][PROJECTS_KEY][p][N_SAMPLES_KEY] for p in self[INDEX_STORE_KEY][name][PROJECTS_KEY]
+                    self[INDEX_STORE_KEY][name][PROJECTS_KEY][p][N_SAMPLES_KEY]
+                    for p in self[INDEX_STORE_KEY][name][PROJECTS_KEY]
                 )
 
         # dump to yaml
@@ -164,7 +234,7 @@ class PEPIndexer(PathExAttMap):
             yaml.dump(self[INDEX_STORE_KEY].to_dict(), fh)
 
         return self[INDEX_STORE_KEY]
-    
+
     def get_namespace(self, namespace: str) -> dict:
         """
         Get a particular namespace's info/meta-data
@@ -175,11 +245,11 @@ class PEPIndexer(PathExAttMap):
             return None
         else:
             return {
-                'name': namespace,
-                'projects': self.get_projects(namespace),
-                'info': self[INDEX_STORE_KEY][namespace][INFO_KEY]
+                "name": namespace,
+                "projects": self.get_projects(namespace),
+                "info": self[INDEX_STORE_KEY][namespace][INFO_KEY],
             }
-    
+
     def get_namespaces(self, names_only=False) -> List[Union[str, dict]]:
         """
         Return a list of namespace names in the index
@@ -191,11 +261,10 @@ class PEPIndexer(PathExAttMap):
         if names_only:
             return nspaces
         else:
-            return [{
-                'name': n,
-                'info': self[INDEX_STORE_KEY][n][INFO_KEY]
-            } for n in nspaces]
-    
+            return [
+                {"name": n, "info": self[INDEX_STORE_KEY][n][INFO_KEY]} for n in nspaces
+            ]
+
     def get_project(self, namespace: str, project: str) -> dict:
         """
         Return a dict of a specific PEP's data
@@ -207,12 +276,14 @@ class PEPIndexer(PathExAttMap):
             return None
         else:
             return {
-                'name': project,
-                'namespace': namespace,
-                'project': self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project],
-                'info': self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project][INFO_KEY]
+                "name": project,
+                "namespace": namespace,
+                "project": self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project],
+                "info": self[INDEX_STORE_KEY][namespace][PROJECTS_KEY][project][
+                    INFO_KEY
+                ],
             }
-    
+
     def get_projects(self, namespace: str = None) -> List[dict]:
         """
         Return a list of project representations (dicts). Can either

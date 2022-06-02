@@ -33,11 +33,13 @@ def build_argparser(desc):
 
     sps = {}
     sps[INDEX_CMD] = add_subparser(INDEX_CMD, "Index a repository of peps.")
+    sps[INDEX_CMD].add_argument("path", help="Path/URL to PEP repository.")
     sps[INDEX_CMD].add_argument(
-        "path", help="Path/URL to PEP repository."
-    )
-    sps[INDEX_CMD].add_argument(
-        "-o", "--output", dest="output", help="Path to the output file.", default="index.yaml"
+        "-o",
+        "--output",
+        dest="output",
+        help="Path to the output file.",
+        default="index.yaml",
     )
 
     return parser
