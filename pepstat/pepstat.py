@@ -135,6 +135,16 @@ class PEPIndexer(PathExAttMap):
         if not os.path.exists(path):
             raise FileNotFoundError(f"Path to PEPs does not exist: '{path}'")
         
+        # create a path to cfg if necessary
+        if not os.path.exists(cfg_name):
+            filepath = pathlib.Path(cfg_name)
+            filepath.parent.mkdir(parents=True, exist_ok=True)
+
+        # create a path to the sample table if necessary
+        if not os.path.exists(sample_table_path):
+            filepath = pathlib.Path(sample_table_path)
+            filepath.parent.mkdir(parents=True, exist_ok=True)
+
         # init the cfg file
         self._write_pop_cfg(cfg_name, sample_table_path)
         
