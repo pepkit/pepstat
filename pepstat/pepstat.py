@@ -111,70 +111,6 @@ class PEPIndexer(PathExAttMap):
                     This project will not be accessible by pephub. "
                 )
             return "project_config.yaml"
-    
-    def _write_pop_cfg(self, cfg_path: str, sample_table_path: str):
-        """
-        Create the pop confgiuration file
-        """
-        cfg = {
-            'pep_version': PEP_VERSION,
-            'sample_table': sample_table_path
-        }
-        with open(cfg_path, 'w') as fh:
-            yaml.dump(cfg, fh)
-            
-
-    def generate_pop(
-        self, path: str, cfg_name: str = "pop.yaml", sample_table_path: str = "peps.csv"
-    ):
-        """
-        Given a directory of PEPs in the namespace/project format, generate one unifying PEP of PEPs (POP)
-        to be used as input to looper for indexing.
-        """
-        # check path exists ... make if not
-        if not os.path.exists(path):
-            raise FileNotFoundError(f"Path to PEPs does not exist: '{path}'")
-        
-        # create a path to cfg if necessary
-        if not os.path.exists(cfg_name):
-            filepath = pathlib.Path(cfg_name)
-            filepath.parent.mkdir(parents=True, exist_ok=True)
-
-        # create a path to the sample table if necessary
-        if not os.path.exists(sample_table_path):
-            filepath = pathlib.Path(sample_table_path)
-            filepath.parent.mkdir(parents=True, exist_ok=True)
-
-        # init the cfg file
-        self._write_pop_cfg(cfg_name, sample_table_path)
-        
-        with open(sample_table_path, 'w') as fh:
-            # write the csv header
-            fh.write(DELIM.join(HEADER_COLS)+"\n")
-            # traverse directory
-            for name in tqdm(os.listdir(path), desc="Analyzing repository", leave=True):
-                # build a path to the namespace
-                path_to_namespace = f"{path}/{name}"
-                name = name.lower()
-
-                if self._is_valid_namespace(path_to_namespace):
-                    # traverse projects
-                    for proj in tqdm(
-                        os.listdir(path_to_namespace), desc=f"Analyzing {name}", leave=True
-                    ):
-                        # build path to project
-                        path_to_proj = f"{path_to_namespace}/{proj}"
-                        proj = proj.lower()
-
-                        if self._is_valid_project(path_to_proj):
-                            # build cfg file
-                            cfg_file = f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}"
-
-                            sample_table_row = DELIM.join([
-                                f"{name}-{proj}", name, proj, cfg_file
-                            ])
-                            fh.write(sample_table_row+"\n")
-
 
     def index(self, path: str, output: str = "index.yaml", reset=False) -> None:
         """
@@ -186,64 +122,7 @@ class PEPIndexer(PathExAttMap):
         :param str output - path to the output file of the index
         :param boolean reset - flag to reset the index if one has already been created
         """
-        # check path exists ... make if not
-        if not os.path.exists(output):
-            filepath = pathlib.Path(output)
-            filepath.parent.mkdir(parents=True, exist_ok=True)
-
-        # init datastore dict if it doesn't already exist
-        if any([self[INDEX_STORE_KEY] is None, reset]):
-            self[INDEX_STORE_KEY] = {}
-
-        # traverse directory
-        for name in tqdm(os.listdir(path), desc="Indexing repository", leave=True):
-            # build a path to the namespace
-            path_to_namespace = f"{path}/{name}"
-            name = name.lower()
-
-            if self._is_valid_namespace(path_to_namespace):
-                # init sub-dict
-                self[INDEX_STORE_KEY][name] = {PROJECTS_KEY: {}}
-
-                # populate info
-                self[INDEX_STORE_KEY][name][INFO_KEY] = self._extract_namespace_info(
-                    path_to_namespace
-                )
-
-                # traverse projects
-                for proj in tqdm(
-                    os.listdir(path_to_namespace), desc=f"Indexing {name}", leave=True
-                ):
-                    # build path to project
-                    path_to_proj = f"{path_to_namespace}/{proj}"
-                    proj = proj.lower()
-                    if self._is_valid_project(path_to_proj):
-                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj] = {
-                            "name": proj,
-                            "cfg": f"{path_to_proj}/{self._extract_project_file_name(path_to_proj)}",
-                        }
-
-                        # store number of samples in project by loading project into memory
-                        p = peppy.Project(
-                            self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj]["cfg"]
-                        )
-                        self[INDEX_STORE_KEY][name][PROJECTS_KEY][proj][
-                            N_SAMPLES_KEY
-                        ] = len(p.samples)
-
-                self[INDEX_STORE_KEY][name][INFO_KEY][N_PROJECTS_KEY] = len(
-                    self[INDEX_STORE_KEY][name][PROJECTS_KEY]
-                )
-                self[INDEX_STORE_KEY][name][INFO_KEY][N_SAMPLES_KEY] = sum(
-                    self[INDEX_STORE_KEY][name][PROJECTS_KEY][p][N_SAMPLES_KEY]
-                    for p in self[INDEX_STORE_KEY][name][PROJECTS_KEY]
-                )
-
-        # dump to yaml
-        with open(output, "w") as fh:
-            yaml.dump(self[INDEX_STORE_KEY].to_dict(), fh)
-
-        return self[INDEX_STORE_KEY]
+        pass
 
     def get_namespace(self, namespace: str) -> dict:
         """
