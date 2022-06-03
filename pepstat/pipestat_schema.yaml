@@ -1,0 +1,3 @@
+n_samples:
+  type: integer
+  description: "Number of samples in a PEP."
