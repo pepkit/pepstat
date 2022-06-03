@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+pepstat/pepstat.py --namespace geo --project gse144580 tests/data/geo/GSE144580/GSE144580_samples.yaml 
+} | tee looper_result/submission/pepstat_geo-gse144580.log

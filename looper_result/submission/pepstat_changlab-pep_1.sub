@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+pepstat/pepstat.py --namespace changlab --project pep_1 tests/data/ChangLab/PEP_1/TCGA_AllSamples_FinalBamList_config.yaml 
+} | tee looper_result/submission/pepstat_changlab-pep_1.log

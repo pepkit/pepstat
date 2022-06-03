@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo 'Compute node:' `hostname`
+echo 'Start time:' `date +'%Y-%m-%d %T'`
+
+{
+python pepstat/pepstat.py --namespace demo --project subtable5 tests/data/demo/subtable5/project_config.yaml 
+} | tee looper_result/submission/pepstat_demo-subtable5.log

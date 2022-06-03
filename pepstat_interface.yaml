@@ -1,0 +1,10 @@
+pipeline_name: pepstat
+pipeline_type: sample
+command_template: >
+  python {pipeline.var_templates.path}
+  --namespace {sample.namespace}
+  --project {sample.prj}
+  {sample.cfg_file}
+var_templates:
+  path: pepstat/pepstat.py
+  

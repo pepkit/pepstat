@@ -1,0 +1,9 @@
+pep_version: 2.0.0
+sample_table: ./peps.csv
+
+sample_modifiers:
+  append:
+    pipeline_interfaces: "pepstat_interface.yaml"
+
+looper:
+  output_dir: looper_result
