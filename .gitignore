@@ -87,4 +87,4 @@ env
 .venv
 
 index.yaml
-looper_results/
+looper_result/
