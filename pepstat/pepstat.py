@@ -2,11 +2,10 @@ import argparse
 import pipestat
 from peppy import Project
 
+
 def build_argparser():
     parser = argparse.ArgumentParser(description="Generate a POP.")
-    parser.add_argument(
-        "path", metavar="path", type=str, help="path to PEP"
-    )
+    parser.add_argument("path", metavar="path", type=str, help="path to PEP")
     parser.add_argument(
         "-n",
         "--namespace",
@@ -29,7 +28,7 @@ def build_argparser():
         type=str,
         dest="out_file",
         default="index.yaml",
-        help="path to file to report results."
+        help="path to file to report results.",
     )
     return parser
 
@@ -40,15 +39,21 @@ def main():
     args = parser.parse_args()
 
     psm = pipestat.PipestatManager(
-        namespace=args.namespace,
-        record_identifier=args.project,
+        namespace="pephub",
+        record_identifier=f"{args.namespace}_{args.project}",
         results_file_path=args.out_file,
         schema_path="pepstat/pipestat_schema.yaml"
     )
+
+    # load up the project instance
     p = Project(args.path)
-    psm.report(values={
-        'n_samples': len(p.samples)
-    })
+
+    psm.report(values={'stats': {
+        'id': f"{args.namespace}/{args.project}",
+        "n_samples": len(p.samples),
+        'namespace': args.namespace
+    }})
+
 
 if __name__ == "__main__":
     try:

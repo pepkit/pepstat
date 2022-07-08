@@ -1,3 +1,14 @@
-n_samples:
-  type: integer
-  description: "Number of samples in a PEP."
+stats:
+  type: object
+  description: "Namespace to store projects and their data."
+  properties:
+    id:
+      type: string
+      description: "unique identifier for a PEP in the form of <namespace>/<project>"
+    n_samples:
+      type: integer
+      description: "Total number of samples in a certain PEP"
+    namespace:
+      type: string
+      description: "The namespace a project belongs to. Can also be extracted from the unique project id."
+
